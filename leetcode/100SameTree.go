@@ -51,24 +51,36 @@ type Result100 struct {
  *     Right *TreeNode
  * }
  */
+//func isSameTree(p *TreeNode, q *TreeNode) bool {
+//	lResult := Result100{}
+//	rResult := Result100{}
+//
+//	parseTree(p, &lResult)
+//	parseTree(q, &rResult)
+//
+//	if len(lResult.Val) == 0 || len(lResult.Val) != len(rResult.Val) {
+//		return false
+//	}
+//
+//	for i := 0; i < len(lResult.Val); i++ {
+//		if rResult.Val[i] != lResult.Val[i] {
+//			return false
+//		}
+//	}
+//
+//	return true
+//}
+
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-	lResult := Result100{}
-	rResult := Result100{}
+	if p == nil && q == nil {
+		return true
+	}
 
-	parseTree(p, &lResult)
-	parseTree(q, &rResult)
-
-	if len(lResult.Val) == 0 || len(lResult.Val) != len(rResult.Val) {
+	if p == nil || q == nil {
 		return false
 	}
 
-	for i := 0; i < len(lResult.Val); i++ {
-		if rResult.Val[i] != lResult.Val[i] {
-			return false
-		}
-	}
-
-	return true
+	return p.Val == q.Val && isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 }
 
 func parseTree(tree *TreeNode, result *Result100) {
