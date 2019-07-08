@@ -18,4 +18,7 @@ func TestMakeChannel(t *testing.T) {
 	println(len(channel), <- channel)
 	println(len(channel), <- channel)
 	println(len(channel))
+
+	// 因为channel数据已经取完了，在未close情况下，如果继续取回报错
+	// println(<- channel)
 }
