@@ -22,6 +22,8 @@ func TestGoRoutinesCount(t *testing.T) {
 		go goroutinesCount()
 	}
 
+	// 这里可以更改为sync.waitGroup
+	// @link /data/github/GoLearn/sync/wait_test.go
 	time.Sleep(10 * time.Millisecond)
 
 	// 这里输出 <= 1000, 类似java线程

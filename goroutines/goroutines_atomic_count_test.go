@@ -23,6 +23,8 @@ func TestGoRoutinesAtomicCount(t *testing.T) {
 		go goroutinesAtomicCount()
 	}
 
+	// 这里可以更改为sync.waitGroup
+	// @link /data/github/GoLearn/sync/wait_test.go
 	time.Sleep(15 * time.Millisecond)
 	fmt.Println(*concurrencyCount)
 }

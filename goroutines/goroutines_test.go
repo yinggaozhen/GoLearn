@@ -31,5 +31,7 @@ func TestGoRoutines(t *testing.T) {
 	go goroutines4()
 	fmt.Println("main end")
 
+	// 这里可以更改为sync.waitGroup
+	// @link /data/github/GoLearn/sync/wait_test.go
 	time.Sleep(10 * time.Millisecond)
 }
