@@ -9,6 +9,7 @@ import (
 type structTag struct {
 	Name string `default:"Unknown Name"`
 	Sex string `Man:"1" Woman:"2"`
+	Hobby []string `list:"array[]"`
 }
 
 func TestStructTag(t *testing.T) {
@@ -20,4 +21,6 @@ func TestStructTag(t *testing.T) {
 
 	fmt.Println(reflect.TypeOf(s).Field(1).Tag.Get("Man"))
 	fmt.Println(reflect.TypeOf(s).Field(1).Tag.Get("Woman"))
+
+	fmt.Println(reflect.TypeOf(s).Field(2).Tag.Get("list"))
 }
