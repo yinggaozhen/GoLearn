@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func TestConst(t *testing.T) {
+func TestSleep(t *testing.T) {
 	fmt.Println("before sleep")
 	time.Sleep(3 * time.Second)
 	fmt.Println("after sleep")
