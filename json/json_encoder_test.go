@@ -11,6 +11,7 @@ type testJsonEncoderStudent struct {
 	Name string `json:"name"`
 	Age int `json:"age"`
 	Language []string `json:"language"`
+	Html string `json:"html"`
 }
 
 func TestJsonEncoder(t *testing.T) {
@@ -18,9 +19,10 @@ func TestJsonEncoder(t *testing.T) {
 	var encoder = json.NewEncoder(&network)
 
 	guozhen := testJsonEncoderStudent{
-		Name : `guozhen`,
+		Name : `果真`,
 		Age : 18,
 		Language: []string{"hello", "world"},
+		Html: "<script src=\"hello.js\"></script>",
 	}
 	err := encoder.Encode(guozhen)
 	if err != nil {
@@ -61,5 +63,26 @@ func TestJsonEncoder(t *testing.T) {
 		// TODO 由于network被重置，所以只输出一个
 		// {"name":"laozhang","age":68,"language":["hello","world"]}
 		fmt.Println(network.String())
+	}
+}
+
+func TestPureJsonEncoder(t *testing.T) {
+	var network bytes.Buffer
+	var encoder = json.NewEncoder(&network)
+
+	// 默认情况下，json.marshal会做类似htmlspeaialchars的转义，需要加SetEscapeHTML
+	encoder.SetEscapeHTML(false)
+
+	guozhen := testJsonEncoderStudent{
+		Name : `果真`,
+		Age : 18,
+		Language: []string{"hello", "world"},
+		Html: "<script src=\"hello.js\"></script>",
+	}
+	err := encoder.Encode(guozhen)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(network.String()) // {"name":"guozhen","age":18,"language":["hello","world"]}
 	}
 }

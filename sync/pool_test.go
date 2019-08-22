@@ -12,25 +12,24 @@ var variable int
 
 // test struct extends
 func TestSyncPool(t *testing.T) {
+	variable = 8888
+
 	pool.New = func() interface{} {
-		fmt.Println("调用了呀 " + strconv.Itoa(variable))
+		fmt.Println("我被调用了 " + strconv.Itoa(variable))
 		return variable
 	}
 
-	variable := pool.Get().(int)
-	pool.Put(variable)
+	variable := pool.Get().(int) // 我被调用了,8888
+	fmt.Println(variable) // 8888
 
-	variable2 := pool.Get().(int)
-	pool.Put(variable2)
+	pool.Put(10086)
+	fmt.Println(pool.Get().(int)) // 10086
+	fmt.Println(pool.Get().(int)) // 我被调用了，10086
+	fmt.Println(pool.Get().(int)) // 我被调用了，10086
 
-	variable3 := pool.Get().(int)
-	pool.Put(variable3)
+	pool.Put(10087)
+	fmt.Println(pool.Get().(int)) // 10087
 
-	variable4 := pool.Get().(int)
-	pool.Put(variable4)
-
-	variable5 := pool.Get().(int)
-	pool.Put(variable5)
-
-	fmt.Println(variable)
+	pool.Put("variable5")
+	fmt.Println(pool.Get().(string))
 }

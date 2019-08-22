@@ -24,12 +24,12 @@ func goroutines4() {
 
 func TestGoRoutines(t *testing.T) {
 	// 函数输出是无序的
-	fmt.Println("main start")
+	fmt.Println("goroutines start")
 	go goroutines1()
 	go goroutines2()
 	go goroutines3()
 	go goroutines4()
-	fmt.Println("main end")
+	fmt.Println("goroutines end")
 
 	// 这里可以更改为sync.waitGroup
 	// @link /data/github/GoLearn/sync/wait_test.go
