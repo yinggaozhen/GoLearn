@@ -46,7 +46,7 @@ func TestUpdateById(t *testing.T) {
 	fmt.Println(db.RowsAffected)
 }
 
-// 测试更新注入
+// 1. 测试更新注入
 func TestUpdateInject(t *testing.T) {
 	stub.TestSetup()
 
@@ -55,6 +55,26 @@ func TestUpdateInject(t *testing.T) {
 	newRecord := model.Salary{
 		Salary: 10086,
 		People: "lisa';DELETE FROM salary;",
+	}
+
+	db := connection.
+		Debug().
+		Table("salary").
+		Where("id = ?", 4).
+		Updates(newRecord)
+
+	fmt.Println(db.RowsAffected)
+}
+
+// 2. 测试更新注入2
+func TestUpdateInject2(t *testing.T) {
+	stub.TestSetup()
+
+	var connection = GetConnection()
+
+	newRecord := map[string]interface{}{
+		"Salary" : 10086,
+		"People" : "lisa';DELETE FROM salary;",
 	}
 
 	db := connection.
