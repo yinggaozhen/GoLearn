@@ -59,7 +59,7 @@ func TestInsertInject(t *testing.T) {
 	// 输出自增主键值
 	fmt.Println(xiongda.Id)
 
-	// TODO 2. 尝试注入 <熊二> 记录
+	// FIXME 2. 尝试注入 <熊二> 记录
 	xionger := &model.Salary{
 		People: "熊二');DELETE FROM salary WHERE id = 1;",
 		Salary: 10087,

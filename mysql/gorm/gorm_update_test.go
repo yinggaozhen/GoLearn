@@ -46,7 +46,7 @@ func TestUpdateById(t *testing.T) {
 	fmt.Println(db.RowsAffected)
 }
 
-// 1. 测试更新注入
+// 1. FIXME 测试更新注入
 func TestUpdateInject(t *testing.T) {
 	stub.TestSetup()
 
@@ -66,7 +66,7 @@ func TestUpdateInject(t *testing.T) {
 	fmt.Println(db.RowsAffected)
 }
 
-// 2. 测试更新注入2
+// 2. FIXME 测试更新注入2
 func TestUpdateInject2(t *testing.T) {
 	stub.TestSetup()
 
