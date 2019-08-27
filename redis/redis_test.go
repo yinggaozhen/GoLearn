@@ -1,4 +1,4 @@
-package sqldriver
+package redis
 
 import (
 	"fmt"
