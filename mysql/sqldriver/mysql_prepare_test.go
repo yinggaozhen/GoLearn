@@ -1,14 +1,15 @@
-package main
+package sqldriver
 
 import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	gm "github.com/yinggaozhen/GoLearn/mysql"
 	"testing"
 )
 
 func TestPrepareSelect(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}
@@ -34,7 +35,7 @@ func TestPrepareSelect(t *testing.T) {
 }
 
 func TestPrepareInsert(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}
@@ -50,7 +51,7 @@ func TestPrepareInsert(t *testing.T) {
 
 
 func TestPrepareUpdate(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}
@@ -65,7 +66,7 @@ func TestPrepareUpdate(t *testing.T) {
 }
 
 func TestPrepareDelete(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}

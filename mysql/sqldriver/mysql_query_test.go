@@ -1,19 +1,20 @@
-package main
+package sqldriver
 
 import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	gm "github.com/yinggaozhen/GoLearn/mysql"
 	"testing"
 )
 
 func TestSelect(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}
 
-	result, err := db.Query("select * from test.salary")
+	result, err := db.Query("SELECT * FROM test.salary")
 	if err != nil {
 		panic(err)
 	}
@@ -33,7 +34,7 @@ func TestSelect(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}
@@ -47,7 +48,7 @@ func TestInsert(t *testing.T) {
 }
 
 func TestUpdate(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}
@@ -61,7 +62,7 @@ func TestUpdate(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	db, err := sql.Open("mysql", "root:@/test")
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", gm.User, gm.Password, gm.Database))
 	if err != nil {
 		panic(err)
 	}
