@@ -14,7 +14,9 @@ type Object struct {
 	Num int
 }
 
-// 使用文档 : {@link https://github.com/go-redis/redis}
+// 使用文档 : {@link https://github.com/go-redis/cache}
+
+// FIXME 这里有一个能成为 go-redis/redis contributors 的机会
 
 func TestRingRedis(t *testing.T) {
 	ring := redis.NewRing(&redis.RingOptions{
