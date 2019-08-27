@@ -12,7 +12,7 @@ var connection *gorm.DB
 
 func GetConnection() *gorm.DB {
 	once.Do(func() {
-		var dsn = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local&multiStatements=true", stub.User, stub.Password, stub.Database)
+		var dsn = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local", stub.User, stub.Password, stub.Database)
 
 		connection, _ = gorm.Open("mysql", dsn)
 	})
