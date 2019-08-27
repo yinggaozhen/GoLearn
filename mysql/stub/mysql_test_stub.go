@@ -2,7 +2,6 @@ package stub
 
 import (
 	"bytes"
-	"fmt"
 	"os/exec"
 )
 
@@ -17,7 +16,5 @@ func TestSetup() {
 
 	var out bytes.Buffer
 	cmd.Stdout = &out
-	err := cmd.Run()
-
-	fmt.Println(out.String(), err)
+	cmd.Run()
 }
