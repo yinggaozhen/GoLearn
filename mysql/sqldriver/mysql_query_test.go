@@ -16,7 +16,7 @@ func TestSelect(t *testing.T) {
 		panic(err)
 	}
 
-	result, err := db.Query("SELECT * FROM test.salary")
+	result, err := db.Query("SELECT id, salary, people FROM salary")
 	if err != nil {
 		panic(err)
 	}
@@ -43,7 +43,10 @@ func TestInsert(t *testing.T) {
 		panic(err)
 	}
 
-	result, err := db.Exec("INSERT INTO test.salary (`id`, `salary`, `people`) VALUES (5, 10086, 'jerry')")
+	name := "'jerry');"
+
+	sql := "INSERT INTO test.salary (`id`, `salary`, `people`) VALUES (5, 10086, " + name + ""
+	result, err := db.Exec(sql)
 	if err != nil {
 		panic(err)
 	}
@@ -59,7 +62,7 @@ func TestUpdate(t *testing.T) {
 		panic(err)
 	}
 
-	result, err := db.Exec("UPDATE test.salary SET salary = 10001 WHERE people = 'jerry'")
+	result, err := db.Exec("UPDATE salary SET salary = 10001 WHERE people = '张三'")
 	if err != nil {
 		panic(err)
 	}
@@ -75,7 +78,7 @@ func TestDelete(t *testing.T) {
 		panic(err)
 	}
 
-	result, err := db.Exec("DELETE FROM test.salary WHERE id = 5")
+	result, err := db.Exec("DELETE FROM test.salary WHERE id = 4")
 	if err != nil {
 		panic(err)
 	}

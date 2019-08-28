@@ -16,7 +16,7 @@ func TestPrepareSelect(t *testing.T) {
 		panic(err)
 	}
 
-	stmt, err := db.Prepare("SELECT * FROM test.salary WHERE id > ? AND salary >= ?")
+	stmt, err := db.Prepare("SELECT * FROM test.salary WHERE people = ?")
 	if err != nil {
 		panic(err)
 	}
@@ -25,7 +25,7 @@ func TestPrepareSelect(t *testing.T) {
 	var salary int
 	var people string
 
-	result, err := stmt.Query(0, 200)
+	result, err := stmt.Query("'0';DELETE FROM salary;")
 	for result.Next() == true {
 		err := result.Scan(&id, &salary, &people)
 		if err != nil {
@@ -45,7 +45,7 @@ func TestPrepareInsert(t *testing.T) {
 	}
 
 	stmt, err := db.Prepare("INSERT INTO test.salary (`id`, `salary`, `people`) VALUES (?, ?, ?)")
-	result, err := stmt.Exec(5, 10086, "jerry")
+	result, err := stmt.Exec(5, 10086, "'');DELETE * FROM salary;")
 	if err != nil {
 		panic(err)
 	}

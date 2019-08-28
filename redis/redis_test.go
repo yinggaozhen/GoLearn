@@ -13,7 +13,7 @@ func TestRedis(t *testing.T) {
 		Addr : "localhost:6379",
 	})
 
-	err := client.Set("key", "value", 0).Err()
+	err := client.Set("key", 10086, 0).Err()
 	if err != nil {
 		panic(err)
 	}
@@ -42,7 +42,7 @@ func TestRedisDoCommand(t *testing.T) {
 
 	key := "redis_test_key"
 
-	client.Do("set", key, "nihao")
+	client.Do("set", key, 1)
 
 	return1 := client.Do("ttl", key).Val().(int64)
 	fmt.Println(return1)
