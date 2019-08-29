@@ -17,20 +17,21 @@ import (
 
 // 参考资料 : {@link https://www.flysnow.org/2017/05/06/go-in-action-go-log.html}
 func TestLogger(t *testing.T) {
-	logger := log.New(os.Stdout, "[prefix] ", log.Ldate)
+	logger := log.New(os.Stdout, "[Prefix] ", log.Ldate)
 	logger.Println("hello1")
 	logger.Println("hello2")
 	logger.Println("hello3")
 
-	logger = log.New(os.Stdout, "[prefix2] ", log.Ldate | log.Llongfile)
+	logger = log.New(os.Stdout, "[Prefix2] ", log.Ldate | log.Llongfile)
 	logger.Println("hello1")
 	logger.Println("hello2")
 	logger.Println("hello3")
 
-	logger = log.New(os.Stdout, "[prefix2] ", log.LstdFlags | log.Llongfile)
-	logger.Println("hello1")
-	logger.Println("hello2")
-	logger.Println("hello3")
+	// 带颜色的输出
+	colorLogger := log.New(os.Stdout, "\x1b[31m[ColorPrint]", log.LstdFlags | log.Llongfile)
+	colorLogger.Println("hello1")
+	colorLogger.Println("hello2")
+	colorLogger.Println("hello3")
 }
 
 func TestFatalLogger(t *testing.T) {
