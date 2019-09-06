@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// 抛出一个新的异常
+// @link : https://colobu.com/2016/04/14/Golang-Channels/
 func TestChannelGoRoutines(t *testing.T) {
 	myChan := make(chan int, 10)
 
