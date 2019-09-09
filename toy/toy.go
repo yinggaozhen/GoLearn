@@ -3,33 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	func1()
-	fmt.Println("func1 fin")
-
-	func2()
-	fmt.Println("func2 fin")
+	fmt.Println(test())
 }
 
-func func1() {
+func test() (number int) {
 	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println(err)
-		}
-
-		fmt.Println("OKOKOKOOKOK")
+		number++
 	}()
 
-	panic(1)
-}
-
-func func2() {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println(err)
-		}
-
-		fmt.Println("OKOKOKOOKOK")
-	}()
-
-	panic(2)
+	return 1
 }
