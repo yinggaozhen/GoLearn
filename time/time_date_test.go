@@ -6,6 +6,11 @@ import (
 	"time"
 )
 
+func TestTimeMonth(t *testing.T) {
+	// TODO 不要被IDE骗了， 这里输出是string
+	fmt.Println(time.January)
+}
+
 func TestNow(t *testing.T) {
 	now := time.Now()
 
