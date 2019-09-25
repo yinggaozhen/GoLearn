@@ -10,5 +10,13 @@ func (u User) GetName() string {
 }
 
 func (u User) GetAge() int {
+	if u.Age == 18 {
+		return 18
+	}
+
+	if u.Age == 19 {
+		return 19
+	}
+
 	return u.Age
 }
