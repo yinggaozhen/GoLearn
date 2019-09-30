@@ -2,7 +2,6 @@ package ast
 
 import (
 	"fmt"
-	"github.com/yinggaozhen/GoLearn/ast/controller"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -10,8 +9,7 @@ import (
 )
 
 // 参考资料 : http://www.01happy.com/golang-ast-use/
-
-var hc controller.HelloController
+// 获取注释
 func TestParseComment(t *testing.T) {
 	parseFile := "/data/github/GoLearn/ast/controller/hello_comment.go"
 
