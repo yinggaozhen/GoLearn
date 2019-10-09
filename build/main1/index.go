@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/jinzhu/now"
 	"io/ioutil"
 	"path/filepath"
+	"time"
 )
 
 // go build -o /tmp/hello index.go && /tmp/hello
@@ -15,4 +17,10 @@ func main() {
 
 	result, _ := ioutil.ReadFile("../hello")
 	fmt.Println(string(result))
+
+	n := now.New(time.Now())
+	fmt.Println(n.String())
+
+	g := now.Guozhen{}
+	g.Echo()
 }
