@@ -1,4 +1,4 @@
-package myioutil
+package main
 
 import (
 	"fmt"
