@@ -7,6 +7,9 @@ import (
 	"testing"
 )
 
+// TIP1 : 只能对slice排序
+// TIP2 : map不能排序，因为map本身就是乱序的，除非把map转换为slice
+
 type person struct {
 	Name string
 	Age int
