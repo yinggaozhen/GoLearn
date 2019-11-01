@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	github.com/didi/gendry v1.3.1
-	github.com/go-redis/cache/v7 v7.0.0
+	github.com/go-redis/cache/v7 v7.0.2
 	github.com/go-redis/redis v6.15.5+incompatible
 	github.com/go-redis/redis/v7 v7.0.0-beta.4
 	github.com/go-sql-driver/mysql v1.4.1
