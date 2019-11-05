@@ -24,5 +24,6 @@ func TestChannelGoBlock(t *testing.T) {
 		}
 	}()
 
-	time.Sleep(200 * time.Second)
+	select {
+	}
 }
