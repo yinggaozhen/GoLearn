@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
 )
 
 type MyHandler struct {
@@ -21,7 +20,6 @@ func main() {
 }
 
 func (h MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	time.Sleep(time.Second * 3)
 	// 处理每次 http 请求
 	// 在这里可根据 URL 进行路由
 	w.Write([]byte("hello aaaa "))
