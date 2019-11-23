@@ -2,7 +2,6 @@ package array
 
 import (
 	"fmt"
-	"strconv"
 	"testing"
 )
 
@@ -11,15 +10,39 @@ func TestChannelSelect(t *testing.T) {
 	channel := make(chan int, 100)
 
 	select {
-	case channel <- 1:
-		fmt.Println("channel 1")
-	case channel <- 2:
-		fmt.Println("channel 2")
-	case o := <-channel:
-		fmt.Println("default" + strconv.Itoa(o))
+	case <-channel:
+		fmt.Println("channel output")
+	default:
 	}
 
+	fmt.Println("select finish")
+}
 
-	//channel <- 1111
-	//<- channel
+// 测试channel select
+func TestChannelSelectDeadlock(t *testing.T) {
+	channel := make(chan int, 100)
+
+	select {
+	// deadlock
+	case <-channel:
+		fmt.Println("channel output")
+	}
+
+	fmt.Println("select finish")
+}
+
+// 测试channel select
+func TestChannelSelectNormal(t *testing.T) {
+	channel := make(chan int, 100)
+	channel <- 1
+
+	select {
+	// deadlock
+	case <-channel:
+		fmt.Println("channel output")
+	default:
+		fmt.Println("default")
+	}
+
+	fmt.Println("select finish")
 }
