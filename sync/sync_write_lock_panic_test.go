@@ -7,6 +7,7 @@ import (
 )
 
 var mu sync.Mutex
+var mu2 sync.Mutex
 
 func TestWriteLockPanic(t *testing.T) {
 	defer func() {
@@ -75,4 +76,13 @@ func TestWriteLockPanic3(t *testing.T) {
 
 	fmt.Println("hello")
 	panic("writeLockPanic")
+}
+
+// 不同的写锁
+func TestWriteLockPanic4(t *testing.T) {
+	mu.Lock()
+	mu2.Lock()
+	fmt.Println("hello")
+	defer mu2.Unlock()
+	defer mu.Unlock()
 }
