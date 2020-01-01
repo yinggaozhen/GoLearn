@@ -24,6 +24,8 @@ func (t *ErrorType) New(args... interface{}) *ErrorType {
 		t.cause = e.(error)
 	case string :
 		t.cause = errors.New(e.(string))
+	case nil:
+		t.cause = nil
 	default:
 		panic("invalid error")
 	}
@@ -36,7 +38,10 @@ func (t *ErrorType) IsTypeOf(nt ErrorType) bool {
 }
 
 func (t *ErrorType) String() string {
-	return t.cause.Error()
+	if t.cause != nil {
+		return t.cause.Error()
+	}
+	return "empty cause"
 }
 
 func main() {
@@ -50,7 +55,9 @@ func main() {
 	fmt.Println(e1)
 
 	// 2
-
 	e2 := StateError.New(errors.New("test 2"))
 	fmt.Println(e2)
+
+	e3 := StateError.New(nil)
+	fmt.Println(e3)
 }
