@@ -8,11 +8,16 @@ import (
 )
 
 var concurrencyCount = new(int32)
+var concurrencyMap = make(map[int]int)
 var wg = sync.WaitGroup{}
 
 func goroutinesAtomicCount() {
 	atomic.AddInt32(concurrencyCount, 1)
 	wg.Done()
+}
+
+func goroutinesAtomicMap(number int) {
+	concurrencyMap[number] = number
 }
 
 func TestGoRoutinesAtomicCount(t *testing.T) {
@@ -29,4 +34,11 @@ func TestGoRoutinesAtomicCount(t *testing.T) {
 	wg.Wait()
 
 	fmt.Println(*concurrencyCount)
+}
+
+func TestGoRoutinesAtomicMap(t *testing.T) {
+	for i := 0; i < 1000; i++ {
+		go goroutinesAtomicMap(i)
+	}
+	fmt.Println(concurrencyMap)
 }
