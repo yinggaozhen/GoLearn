@@ -2,15 +2,17 @@ package array
 
 import (
 	"fmt"
+	"sync"
 	"sync/atomic"
 	"testing"
-	"time"
 )
 
 var concurrencyCount = new(int32)
+var wg = sync.WaitGroup{}
 
 func goroutinesAtomicCount() {
 	atomic.AddInt32(concurrencyCount, 1)
+	wg.Done()
 }
 
 func TestGoRoutinesAtomicCount(t *testing.T) {
@@ -20,11 +22,11 @@ func TestGoRoutinesAtomicCount(t *testing.T) {
 	fmt.Println("concurrency count main start")
 
 	for i := 0; i < 10000; i++ {
+		wg.Add(1)
 		go goroutinesAtomicCount()
 	}
 
-	// 这里可以更改为sync.waitGroup
-	// @link /data/github/GoLearn/sync/wait_test.go
-	time.Sleep(15 * time.Millisecond)
+	wg.Wait()
+
 	fmt.Println(*concurrencyCount)
 }
